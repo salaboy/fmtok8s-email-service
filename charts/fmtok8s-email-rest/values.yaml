@@ -45,7 +45,7 @@ canary:
   host: ""
 
 service:
-  name: fmtok8s-email-rest
+  name: fmtok8s-email
   type: ClusterIP
   externalPort: 80
   internalPort: 8080
@@ -54,12 +54,12 @@ service:
     fabric8.io/ingress.annotations: "kubernetes.io/ingress.class: nginx"
 resources:
   limits:
-    cpu: 400m
-    memory: 256Mi
+    cpu: 1000m
+    memory: 1768Mi
   requests:
-    cpu: 200m
-    memory: 128Mi
-probePath: /
+    cpu: 650m
+    memory: 1024Mi
+probePath: /actuator/health
 livenessProbe:
   initialDelaySeconds: 60
   periodSeconds: 10
@@ -70,7 +70,6 @@ readinessProbe:
   periodSeconds: 10
   successThreshold: 1
   timeoutSeconds: 1
-
 
 # custom ingress annotations on this service
 ingress:
