@@ -40,7 +40,7 @@ public class EmailService {
     @Value("${EXTERNAL_URL:http://fmtok8s-api-gateway.default.34.91.93.206.xip.io}")
     private String externalURL;
 
-    @Value("${EVENTS_ENABLED:true}")
+    @Value("${EVENTS_ENABLED:false}")
     private Boolean eventsEnabled;
 
     @Value("${K_SINK:http://broker-ingress.knative-eventing.svc.cluster.local/default/default}")
