@@ -53,6 +53,7 @@ public class EmailService {
 
     @PostMapping("/")
     public void sendEmail(@RequestBody Map<String, String> email) {
+        log.info("> REST ENDPOINT INVOKED for Sending an Email");
         String toEmail = email.get("toEmail");
         String emailTitle = email.get("title");
         String emailContent = email.get("content");
@@ -64,9 +65,20 @@ public class EmailService {
 
     @PostMapping("/notification")
     public void sendEmailNotification(@RequestBody Proposal proposal) {
+        log.info("> REST ENDPOINT INVOKED for Sending an Email Notification about a proposal from: " + proposal.getEmail());
         sendEmailNotificationWithLink(proposal, false);
-        emitEmailWithForProposalEvent(proposal);
+        log.info("> \t EventsEnabled: " + eventsEnabled);
+        if(eventsEnabled) {
+            emitEmailWithForProposalEvent(proposal);
+        }
     }
+
+    @PostMapping("/committee")
+    public void sendEmailReminderToCommitteeMembers(@RequestBody Proposal proposal) {
+        log.info("> REST ENDPOINT INVOKED for Sending an Email Reminder to Committee members about a proposal from: " + proposal.getEmail());
+        sendEmailToCommittee(proposal);
+    }
+
 
     private void sendEmailNotificationWithLink(Proposal proposal, boolean withLink) {
         String emailBody = "Dear " + proposal.getAuthor() + ", \n";
@@ -118,38 +130,38 @@ public class EmailService {
         log.info("+-------------------------------------------------------------------+\n\n");
     }
 
-    public void emitEmailWithForProposalEvent(Proposal proposal){
-        if(eventsEnabled) {
-            String proposalString = null;
-            try {
-                proposalString = objectMapper.writeValueAsString(proposal);
-                proposalString = objectMapper.writeValueAsString(proposalString); //needs double quoted ??
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
-            CloudEventBuilder cloudEventBuilder = CloudEventBuilder.v1()
-                    .withId(UUID.randomUUID().toString())
-                    .withTime(OffsetDateTime.now().toZonedDateTime()) // bug-> https://github.com/cloudevents/sdk-java/issues/200
-                    .withType("Email.Sent")
-                    .withSource(URI.create("email-service.default.svc.cluster.local"))
-                    .withData(proposalString.getBytes())
-                    .withDataContentType("application/json")
-                    .withSubject(proposal.getTitle());
+    public void emitEmailWithForProposalEvent(Proposal proposal) {
 
-            CloudEvent zeebeCloudEvent = ZeebeCloudEventsHelper
-                    .buildZeebeCloudEvent(cloudEventBuilder)
-                    .withCorrelationKey(proposal.getId()).build();
-
-            logCloudEvent(zeebeCloudEvent);
-            WebClient webClient = WebClient.builder().baseUrl(K_SINK).filter(logRequest()).build();
-
-            WebClient.ResponseSpec postCloudEvent = CloudEventsHelper.createPostCloudEvent(webClient, zeebeCloudEvent);
-
-            postCloudEvent.bodyToMono(String.class)
-                    .doOnError(t -> t.printStackTrace())
-                    .doOnSuccess(s -> log.info("Cloud Event Posted to K_SINK -> " + K_SINK + ": Result: " +  s))
-                    .subscribe();
+        String proposalString = null;
+        try {
+            proposalString = objectMapper.writeValueAsString(proposal);
+            proposalString = objectMapper.writeValueAsString(proposalString); //needs double quoted ??
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
         }
+        CloudEventBuilder cloudEventBuilder = CloudEventBuilder.v1()
+                .withId(UUID.randomUUID().toString())
+                .withTime(OffsetDateTime.now().toZonedDateTime()) // bug-> https://github.com/cloudevents/sdk-java/issues/200
+                .withType("Email.Sent")
+                .withSource(URI.create("email-service.default.svc.cluster.local"))
+                .withData(proposalString.getBytes())
+                .withDataContentType("application/json")
+                .withSubject(proposal.getTitle());
+
+        CloudEvent zeebeCloudEvent = ZeebeCloudEventsHelper
+                .buildZeebeCloudEvent(cloudEventBuilder)
+                .withCorrelationKey(proposal.getId()).build();
+
+        logCloudEvent(zeebeCloudEvent);
+        WebClient webClient = WebClient.builder().baseUrl(K_SINK).filter(logRequest()).build();
+
+        WebClient.ResponseSpec postCloudEvent = CloudEventsHelper.createPostCloudEvent(webClient, zeebeCloudEvent);
+
+        postCloudEvent.bodyToMono(String.class)
+                .doOnError(t -> t.printStackTrace())
+                .doOnSuccess(s -> log.info("Cloud Event Posted to K_SINK -> " + K_SINK + ": Result: " + s))
+                .subscribe();
+
     }
 
     private void logCloudEvent(CloudEvent cloudEvent) {
