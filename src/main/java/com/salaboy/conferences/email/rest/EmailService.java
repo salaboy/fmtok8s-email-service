@@ -33,9 +33,7 @@ public class EmailService {
     }
 
     private ObjectMapper objectMapper = new ObjectMapper();
-
-    @Value("${version:0.0.0}")
-    private String version;
+    
 
     @Value("${EXTERNAL_URL:http://fmtok8s-api-gateway.default.34.91.93.206.xip.io}")
     private String externalURL;
@@ -46,10 +44,6 @@ public class EmailService {
     @Value("${K_SINK:http://broker-ingress.knative-eventing.svc.cluster.local/default/default}")
     private String K_SINK;
 
-    @GetMapping("/info")
-    public String infoWithVersion() {
-        return "{ \"name\" : \"Email Service\", \"version\" : \"v" + version + "++\", \"source\": \"https://github.com/salaboy/fmtok8s-email/releases/tag/v" + version + "\" }";
-    }
 
     @PostMapping("/")
     public void sendEmail(@RequestBody Map<String, String> email) {
