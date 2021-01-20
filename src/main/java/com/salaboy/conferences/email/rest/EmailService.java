@@ -33,7 +33,6 @@ public class EmailService {
     }
 
     private ObjectMapper objectMapper = new ObjectMapper();
-    
 
     @Value("${EXTERNAL_URL:http://fmtok8s-api-gateway.default.34.91.93.206.xip.io}")
     private String externalURL;
