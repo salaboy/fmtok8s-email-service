@@ -1,5 +1,5 @@
 apiVersion: v2
 description: FMTOK8S Email Service (REST) Helm chart for Kubernetes
 name: fmtok8s-email-rest
-version: 0.1.0-SNAPSHOT
+version: 0.0.9
 icon: https://raw.githubusercontent.com/cdfoundation/artwork/master/jenkinsx/icon/color/jenkinsx-icon-color.png
