@@ -1,0 +1,68 @@
+{{- if .Capabilities.APIVersions.Has "jenkins.io/v1/Release" }}
+apiVersion: jenkins.io/v1
+kind: Release
+metadata:
+  creationTimestamp: "2021-02-13T13:31:46Z"
+  deletionTimestamp: null
+  name: '{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}'
+spec:
+  commits:
+  - author:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    branch: master
+    committer:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    message: |
+      chore: release 0.0.10
+    sha: 0a86353a1dc027b532af20f591b005f0b7a90204
+  - author:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    branch: master
+    committer:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    message: |
+      chore: add variables
+    sha: 46cd827d7658285b63ea9ac85c419483088b80be
+  - author:
+      email: salaboy@gmail.com
+      name: salaboy
+    branch: master
+    committer:
+      email: salaboy@gmail.com
+      name: salaboy
+    message: |
+      avoid promoting
+    sha: 3eb2a8772357b117037a10a1063bd4d17962ef64
+  - author:
+      email: salaboy@gmail.com
+      name: salaboy
+    branch: master
+    committer:
+      email: salaboy@gmail.com
+      name: salaboy
+    message: |
+      update charts (https://github.com/jenkins-x/jx3-gitops-template) from master (cd501cf5c185c592663d68273b60e3413c0278fb) to master (ffc411f9b9e061f681d3788954bdc009137e5e30)
+    sha: 24641b5f37416ae4c974c0fece456ebdc3ca4564
+  - author:
+      email: salaboy@gmail.com
+      name: salaboy
+    branch: master
+    committer:
+      email: salaboy@gmail.com
+      name: salaboy
+    message: |
+      update jenkins-x (https://github.com/jenkins-x/jx3-pipeline-catalog) from master (0f4869deab149e13d1fbb948f70e8e68513ecd96) to master (aee79428308d9be55f15dbe3863f65ed3e1ab6d0)
+    sha: 0ce452da1c5a4e456daeae97ee1119ad1be95dab
+  gitHttpUrl: https://github.com/salaboy/fmtok8s-email-rest
+  gitOwner: salaboy
+  gitRepository: fmtok8s-email-rest
+  name: '{{ .Chart.Name }}'
+  releaseNotesURL: https://github.com/salaboy/fmtok8s-email-rest/releases/tag/v0.0.11
+  version: v0.0.11
+status: {}
+ 
+{{- end }}
