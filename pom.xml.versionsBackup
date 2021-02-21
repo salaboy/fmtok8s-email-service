@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.salaboy.conferences</groupId>
     <artifactId>conference-email-rest</artifactId>
-    <version>0.0.14</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>From Monolith to K8S :: Email Service (REST)</name>
     <description>From Monolith to K8S :: Email Service (REST)</description>
 
