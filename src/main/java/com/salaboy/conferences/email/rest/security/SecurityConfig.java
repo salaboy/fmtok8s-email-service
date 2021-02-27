@@ -1,7 +1,5 @@
 package com.salaboy.conferences.email.rest.security;
 
-
-import org.springframework.boot.actuate.autoconfigure.security.reactive.EndpointRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.convert.converter.Converter;
@@ -22,7 +20,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Profile("prod")
+@Profile("sso")
 @EnableWebFluxSecurity
 public class SecurityConfig {
 
@@ -33,8 +31,8 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeExchange(exchanges ->
                         exchanges
-                                .pathMatchers(HttpMethod.POST, "/**").hasRole("organizer")
-                                .pathMatchers(HttpMethod.DELETE, "/**").hasRole("organizer")
+                                .pathMatchers(HttpMethod.POST, "/**").hasAuthority("organizer")
+                                .pathMatchers(HttpMethod.DELETE, "/**").hasAuthority("organizer")
                                 .pathMatchers(HttpMethod.GET, "/actuator/health").permitAll()
                                 .pathMatchers(HttpMethod.GET, "/actuator/info").permitAll()
                                 .pathMatchers(HttpMethod.GET, "/prometheus").permitAll()
@@ -61,8 +59,7 @@ public class SecurityConfig {
         @Override
         public Collection<GrantedAuthority> convert(Jwt jwt) {
 
-            @SuppressWarnings("unchecked")
-            var roles = (List<String>) jwt.getClaims().getOrDefault("groups", Collections.emptyList());
+            var roles = (List<String>) jwt.getClaims().getOrDefault("roles", Collections.emptyList());
 
             return roles.stream()
                     .map(SimpleGrantedAuthority::new)
