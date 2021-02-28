@@ -1,0 +1,48 @@
+{{- if .Capabilities.APIVersions.Has "jenkins.io/v1/Release" }}
+apiVersion: jenkins.io/v1
+kind: Release
+metadata:
+  creationTimestamp: "2021-02-28T21:24:07Z"
+  deletionTimestamp: null
+  name: '{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}'
+spec:
+  commits:
+  - author:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    branch: master
+    committer:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    message: |
+      chore: release 0.0.16
+    sha: febfa1f136ad428a27f36578e66eace43b1e1d8a
+  - author:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    branch: master
+    committer:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    message: |
+      chore: add variables
+    sha: d498e262b629cf4c6c49e21eab1512f87aa2b16c
+  - author:
+      email: salaboy@gmail.com
+      name: salaboy
+    branch: master
+    committer:
+      email: salaboy@gmail.com
+      name: salaboy
+    message: |
+      updating profiles sso and tracing
+    sha: b0a058581b1d9b453d3c22769359e0b28bf5624e
+  gitHttpUrl: https://github.com/salaboy/fmtok8s-email-rest
+  gitOwner: salaboy
+  gitRepository: fmtok8s-email-rest
+  name: '{{ .Chart.Name }}'
+  releaseNotesURL: https://github.com/salaboy/fmtok8s-email-rest/releases/tag/v0.0.17
+  version: v0.0.17
+status: {}
+ 
+{{- end }}
