@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.web.reactive.config.CorsRegistry;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
 
-@Profile("prod")
+@Profile("sso")
 @Configuration
 public class CORSConfig implements WebFluxConfigurer {
 
