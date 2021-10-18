@@ -24,7 +24,7 @@ public class InfoController {
     @GetMapping("/info")
     public ServiceInfo getInfo() {
         return new ServiceInfo(
-                "Email Service (REST)",
+                "Email Service (REST) - IMPROVED!!",
                 "v"+version,
                 "https://github.com/salaboy/fmtok8s-email-rest/releases/tag/v" + version,
                 podId,
