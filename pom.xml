@@ -171,6 +171,7 @@
                         <builder>paketobuildpacks/builder:tiny</builder>
                         <env>
                             <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
+                            <BP_JVM_VERSION>17</BP_JVM_VERSION>
                         </env>
                     </image>
                 </configuration>
