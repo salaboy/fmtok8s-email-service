@@ -26,7 +26,7 @@ public class InfoController {
         return new ServiceInfo(
                 "Email Service (REST)",
                 "v"+version,
-                "https://github.com/salaboy/fmtok8s-email-rest/releases/tag/v" + version,
+                "https://github.com/salaboy/fmtok8s-email-service/releases/tag/v" + version,
                 podId,
                 podNamespace,
                 podNodeName);

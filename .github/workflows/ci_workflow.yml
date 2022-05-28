@@ -122,7 +122,7 @@ jobs:
           registry: ghcr.io
           username: ${{ env.OWNER }}
           # It needs to be added on Github repository
-          # https://github.com/salaboy/fmtok8s-email-rest/settings/secrets/actions
+          # https://github.com/salaboy/fmtok8s-email-service/settings/secrets/actions
           password: ${{ secrets.PACKAGE_TOKEN }}
       - name: Publish native image
         run: docker push ${{ needs.setup.outputs.docker_tags }}-native
