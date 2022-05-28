@@ -9,12 +9,12 @@ mvn package
 ```
 
 ```
-docker build -t salaboy/fmtok8s-email-rest:0.1.0
-docker push salaboy/fmtok8s-email-rest:0.1.0
+docker build -t salaboy/fmtok8s-email-service:0.1.0
+docker push salaboy/fmtok8s-email-service:0.1.0
 ```
 
 ```
-cd charts/fmtok8s-email-rest
+cd charts/fmtok8s-email-service
 helm package .
 ```
 

@@ -1,4 +1,4 @@
-package com.salaboy.conferences.email.rest;
+package com.salaboy.conferences.email;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

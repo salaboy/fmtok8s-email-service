@@ -1,4 +1,4 @@
-package com.salaboy.conferences.email.rest.model;
+package com.salaboy.conferences.email.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

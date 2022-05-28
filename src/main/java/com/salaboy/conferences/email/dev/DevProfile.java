@@ -1,4 +1,4 @@
-package com.salaboy.conferences.email.rest.dev;
+package com.salaboy.conferences.email.dev;
 
 import io.opentracing.contrib.spring.tracer.configuration.TracerAutoConfiguration;
 import org.springframework.boot.actuate.autoconfigure.security.reactive.ReactiveManagementWebSecurityAutoConfiguration;
