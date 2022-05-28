@@ -1,4 +1,4 @@
-package com.salaboy.conferences.email.rest.tracing;
+package com.salaboy.conferences.email.tracing;
 
 import io.opentracing.Tracer;
 import io.opentracing.contrib.spring.web.client.TracingExchangeFilterFunction;

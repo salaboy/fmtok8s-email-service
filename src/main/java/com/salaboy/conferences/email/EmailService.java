@@ -1,8 +1,8 @@
-package com.salaboy.conferences.email.rest;
+package com.salaboy.conferences.email;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.salaboy.conferences.email.rest.model.Proposal;
+import com.salaboy.conferences.email.model.Proposal;
 import io.cloudevents.CloudEvent;
 import io.cloudevents.core.builder.CloudEventBuilder;
 import io.cloudevents.core.format.EventFormat;

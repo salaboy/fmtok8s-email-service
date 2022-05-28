@@ -1,6 +1,6 @@
-package com.salaboy.conferences.email.rest;
+package com.salaboy.conferences.email;
 
-import com.salaboy.conferences.email.rest.model.ServiceInfo;
+import com.salaboy.conferences.email.model.ServiceInfo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
