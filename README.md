@@ -14,7 +14,7 @@ docker push salaboy/fmtok8s-email-service:0.1.0
 ```
 
 ```
-cd charts/fmtok8s-email-service
+cd helm/fmtok8s-email-service
 helm package .
 ```
 
