@@ -1,6 +1,5 @@
 package com.salaboy.conferences.email.dev;
 
-import io.opentracing.contrib.spring.tracer.configuration.TracerAutoConfiguration;
 import org.springframework.boot.actuate.autoconfigure.security.reactive.ReactiveManagementWebSecurityAutoConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
@@ -12,7 +11,7 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Profile("dev")
-@EnableAutoConfiguration(exclude = {SecurityAutoConfiguration.class, TracerAutoConfiguration.class,
+@EnableAutoConfiguration(exclude = {SecurityAutoConfiguration.class,
         ReactiveManagementWebSecurityAutoConfiguration.class})
 @Configuration
 public class DevProfile {
