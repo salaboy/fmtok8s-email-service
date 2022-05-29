@@ -228,18 +228,6 @@
                     </image>
                 </configuration>
             </plugin>
-
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <image>
-                        <buildpacks>
-                            <buildpack>gcr.io/paketo-buildpacks/java-native-image:7.1.0</buildpack>
-                        </buildpacks>
-                    </image>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 
