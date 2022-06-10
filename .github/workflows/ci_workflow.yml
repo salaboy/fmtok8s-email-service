@@ -116,7 +116,7 @@ jobs:
   publish_chart:
     runs-on: ubuntu-20.04
     needs: [ setup, build ]
-    if: needs.setup.outputs.execute_helm_publish
+    if: ${{ needs.setup.outputs.execute_helm_publish == 'true' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
