@@ -93,7 +93,7 @@ jobs:
   build_publish_native:
     runs-on: ubuntu-20.04
     needs: [ setup, build ]
-    if: ${{ steps.fmtok8s_ci.outputs.execute_native_publish == 'true' }}
+    if: ${{ needs.setup.outputs.execute_native_publish == 'true' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
