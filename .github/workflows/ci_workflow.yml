@@ -20,11 +20,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           default_branch: main
-      - name: From Monolith to K8S CI Output
-        run: |
-          echo ${{ steps.fmtok8s_ci.outputs.execute_helm_publish }}
-          echo ${{ steps.fmtok8s_ci.outputs.execute_docker_publish }}
-          echo ${{ steps.fmtok8s_ci.outputs.execute_version_to_use }}
       - name: Set up Docker Meta
         id: docker_meta
         uses: docker/metadata-action@v3
@@ -121,7 +116,7 @@ jobs:
   publish_chart:
     runs-on: ubuntu-20.04
     needs: [ setup, build ]
-    if: ${{ needs.setup.outputs.execute_helm_publish }}
+    if: needs.setup.outputs.execute_helm_publish
     steps:
       - name: Checkout
         uses: actions/checkout@v3
