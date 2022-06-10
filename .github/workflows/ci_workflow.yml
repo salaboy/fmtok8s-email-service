@@ -16,7 +16,7 @@ jobs:
         run: echo "Building ${{ github.repository }} application, branch/tag ${{ github.ref_name}}"
       - name: From Monolith to K8S CI
         id: fmtok8s_ci
-        uses: mcruzdev/fmtok8s-ci@v0.1.24
+        uses: mcruzdev/fmtok8s-ci@v0.1.25
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           default_branch: main
@@ -59,7 +59,7 @@ jobs:
   publish:
     needs: [ setup, build ]
     runs-on: ubuntu-20.04
-    if: ${{ needs.setup.outputs.execute_docker_publish }}
+    if: ${{ needs.setup.outputs.execute_docker_publish == 'true' }}
 #    TODO: verify if is necessary to publish when the push is not on 'main' branch
 #    TODO: know which we will use for
     steps:
@@ -92,7 +92,7 @@ jobs:
   build_publish_native:
     runs-on: ubuntu-20.04
     needs: [ setup, build ]
-    if: ${{ needs.setup.outputs.execute_docker_publish }}
+    if: ${{ needs.setup.outputs.execute_docker_publish == 'true' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
