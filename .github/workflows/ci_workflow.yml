@@ -16,6 +16,9 @@ jobs:
         run: echo "Building ${{ github.repository }} application, branch/tag ${{ github.ref_name}}"
       - name: From Monolith to K8S CI
         uses: mcruzdev/fmtok8s-ci@v0.1.16
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_branch: main
       - name: Set up Docker Meta
         id: docker_meta
         uses: docker/metadata-action@v3
