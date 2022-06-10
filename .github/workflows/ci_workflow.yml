@@ -34,7 +34,7 @@ jobs:
   build:
     needs: [ setup ]
     runs-on: ubuntu-20.04
-    if: ${{ }}
+    if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v') }}
     steps:
       - name: Checkout and Set up JDK 17 Temurin
         uses: actions/checkout@v3
