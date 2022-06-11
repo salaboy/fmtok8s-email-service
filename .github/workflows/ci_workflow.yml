@@ -128,6 +128,14 @@ jobs:
         with:
           valueFile: 'helm/fmtok8s-email-service/Chart.yaml'
           propertyPath: 'version'
+          value: '${{ needs.setup.outputs.version_to_use }}'
+          commitChange: false
+          updateFile: true
+      - name: Change Chart.yml
+        uses: fjogeleit/yaml-update-action@main
+        with:
+          valueFile: 'helm/fmtok8s-email-service/values.yaml'
+          propertyPath: 'image.tag'
           value: '${{ needs.setup.outputs.version_to_use }}-native'
           commitChange: false
           updateFile: true
