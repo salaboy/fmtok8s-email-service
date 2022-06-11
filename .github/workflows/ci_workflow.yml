@@ -128,7 +128,7 @@ jobs:
         with:
           valueFile: 'helm/fmtok8s-email-service/Chart.yaml'
           propertyPath: 'version'
-          value: '${{ needs.setup.outputs.version_to_use }}'
+          value: '${{ needs.setup.outputs.version_to_use }}-native'
           commitChange: false
           updateFile: true
       - name: Release Helm Chart
