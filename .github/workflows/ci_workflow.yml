@@ -19,7 +19,7 @@ jobs:
         uses: mcruzdev/fmtok8s-ci@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          default_branch: release-process
+          default_branch: main
       - name: Set up Docker Meta
         id: docker_meta
         uses: docker/metadata-action@v3
