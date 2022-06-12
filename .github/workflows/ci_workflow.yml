@@ -117,7 +117,7 @@ jobs:
           username: ${{ env.OWNER }}
           password: ${{ secrets.PACKAGE_TOKEN }}
       - name: Publish native image
-        run: docker push ${{ needs.setup.outputs.version_to_use }}-native
+        run: docker push ghcr.io/${{ github.repository}}:${{ needs.setup.outputs.version_to_use }}-native
   publish_chart:
     runs-on: ubuntu-20.04
     needs: [ setup, build ]
