@@ -61,8 +61,8 @@ jobs:
     needs: [ setup, build ]
     runs-on: ubuntu-20.04
     if: ${{ needs.setup.outputs.execute_docker_publish == 'true' }}
-#    TODO: verify if is necessary to publish when the push is not on 'main' branch
-#    TODO: know which we will use for
+    #    TODO: verify if is necessary to publish when the push is not on 'main' branch
+    #    TODO: know which we will use for
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -105,7 +105,9 @@ jobs:
           components: 'native-image'
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Build native image
-        run: mvn -DskipTests clean spring-boot:build-image -Dspring-boot.build-image.imageName=${{ needs.setup.outputs.version_to_use }}-native
+        run: |
+          mvn -DskipTests clean spring-boot:build-image \
+            -Dspring-boot.build-image.imageName=ghcr.io/${{ github.repository}}:${{ needs.setup.outputs.version_to_use }}-native
       # Login to Github Container Registry [AUTH] https://github.com/docker/login-action
       # GitHub Action to login against a Docker registry.
       - name: Login to Github Container Registry
