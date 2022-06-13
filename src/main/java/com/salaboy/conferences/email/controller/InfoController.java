@@ -1,4 +1,4 @@
-package com.salaboy.conferences.email;
+package com.salaboy.conferences.email.controller;
 
 import com.salaboy.conferences.email.model.ServiceInfo;
 import org.springframework.beans.factory.annotation.Value;
