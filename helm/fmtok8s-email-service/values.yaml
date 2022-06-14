@@ -4,7 +4,7 @@
 replicaCount: 1
 image:
   repository: ghcr.io/salaboy/fmtok8s-email-service
-  tag: 0.0.1-native
+  tag: v0.0.1-native
   pullPolicy: Always
 # define environment variables here as a map of key: value
 env:
