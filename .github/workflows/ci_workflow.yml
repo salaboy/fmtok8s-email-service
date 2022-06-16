@@ -90,6 +90,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ needs.setup.outputs.docker_tags }}
+          labels: ${{ needs.setup.outputs.docker_tags }}
   build_publish_native:
     runs-on: ubuntu-20.04
     needs: [ setup, build ]
