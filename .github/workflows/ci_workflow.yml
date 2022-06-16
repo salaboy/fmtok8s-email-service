@@ -58,6 +58,7 @@ jobs:
         with:
           name: app-jar
           path: target/app.jar
+          labels: ${{ needs.setup.outputs.docker_labels }}
   publish:
     needs: [ setup, build ]
     runs-on: ubuntu-20.04
@@ -119,7 +120,7 @@ jobs:
           username: ${{ env.OWNER }}
           password: ${{ secrets.PACKAGE_TOKEN }}
       - name: Publish native image
-        run: docker push ghcr.io/${{ github.repository}}:${{ needs.setup.outputs.version_to_use }}-native
+        run: docker push --label ${{ needs.setup.outputs.docker_labels }} ghcr.io/${{ github.repository}}:${{ needs.setup.outputs.version_to_use }}-native
   publish_chart:
     runs-on: ubuntu-20.04
     needs: [ setup, build ]
