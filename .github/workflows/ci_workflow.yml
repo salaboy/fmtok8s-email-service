@@ -16,7 +16,7 @@ jobs:
         run: echo "Building ${{ github.repository }} application, branch/tag ${{ github.ref_name}}"
       - name: From Monolith to K8S CI
         id: fmtok8s_ci
-        uses: mcruzdev/fmtok8s-ci@main
+        uses: salaboy/fmtok8s-ci@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           default_branch: main
@@ -34,6 +34,7 @@ jobs:
         run: echo "Docker meta tags ${{ steps.docker_meta.outputs.tags }}"
     outputs:
       docker_tags: ${{ steps.docker_meta.outputs.tags }}
+      docker_labels: ${{ steps.docker_meta.outputs.labels }}
       execute_helm_publish: ${{ steps.fmtok8s_ci.outputs.execute_helm_publish }}
       execute_docker_publish: ${{ steps.fmtok8s_ci.outputs.execute_docker_publish }}
       execute_native_publish: ${{ steps.fmtok8s_ci.outputs.execute_native_publish }}
@@ -90,7 +91,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ needs.setup.outputs.docker_tags }}
-          labels: ${{ needs.setup.outputs.docker_tags }}
+          labels: ${{ needs.setup.outputs.docker_labels }}
   build_publish_native:
     runs-on: ubuntu-20.04
     needs: [ setup, build ]
