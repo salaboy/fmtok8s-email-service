@@ -19,3 +19,10 @@ helm package .
 ```
 
 Copy tar to http://github.com/salaboy/helm and push
+
+
+## Install this chart latest version
+
+```
+helm install email fmtok8s/fmtok8s-email-service --version v0.0.1
+```

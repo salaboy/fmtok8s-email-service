@@ -114,21 +114,21 @@
     </dependencies>
 
     <profiles>
-        <profile>
-            <id>dev</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <spring.profiles.active>dev</spring.profiles.active>
-            </properties>
-        </profile>
-        <profile>
-            <id>prod</id>
-            <properties>
-                <spring.profiles.active>sso,tracing</spring.profiles.active>
-            </properties>
-        </profile>
+<!--        <profile>-->
+<!--            <id>dev</id>-->
+<!--            <activation>-->
+<!--                <activeByDefault>true</activeByDefault>-->
+<!--            </activation>-->
+<!--            <properties>-->
+<!--                <spring.profiles.active>dev</spring.profiles.active>-->
+<!--            </properties>-->
+<!--        </profile>-->
+<!--        <profile>-->
+<!--            <id>prod</id>-->
+<!--            <properties>-->
+<!--                <spring.profiles.active>sso,tracing</spring.profiles.active>-->
+<!--            </properties>-->
+<!--        </profile>-->
         <profile>
             <id>native</id>
             <properties>
@@ -203,9 +203,9 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <profiles>
-                        <profile>dev</profile>
-                    </profiles>
+<!--                    <profiles>-->
+<!--                        <profile>dev</profile>-->
+<!--                    </profiles>-->
                     <image>
                         <builder>paketobuildpacks/builder:tiny</builder>
                         <env>
