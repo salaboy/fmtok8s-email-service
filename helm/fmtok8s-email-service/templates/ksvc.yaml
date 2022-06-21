@@ -1,4 +1,4 @@
-{{- if .Values.knativeDeploy }}
+{{- if .Values.knative.enabled }}
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
@@ -14,6 +14,7 @@ spec:
     metadata:
       annotations:
         autoscaling.knative.dev/minScale: "1"
+        networking.knative.dev/visibility: "cluster-local"
     spec:
       containers:
         - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -48,4 +49,6 @@ spec:
             timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
           resources:
 {{ toYaml .Values.resources | indent 14 }}
+  traffic:
+{{ toYaml .Values.knative.traffic | indent 2 }}
 {{- end }}
