@@ -36,7 +36,7 @@ public class EmailService {
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
-    @Value("${EXTERNAL_URL:http://fmtok8s-api-gateway.default.34.91.93.206.xip.io}")
+    @Value("${EXTERNAL_URL:http://fmtok8s-frontend.default.X.X.X.X.sslip.io}")
     private String externalURL;
 
     @Value("${EVENTS_ENABLED:false}")
