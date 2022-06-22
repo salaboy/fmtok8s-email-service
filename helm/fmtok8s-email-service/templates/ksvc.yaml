@@ -14,7 +14,6 @@ spec:
     metadata:
       annotations:
         autoscaling.knative.dev/minScale: "1"
-        networking.knative.dev/visibility: "cluster-local"
     spec:
       containers:
         - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
