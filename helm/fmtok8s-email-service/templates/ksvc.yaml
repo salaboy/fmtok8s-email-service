@@ -9,6 +9,9 @@ metadata:
   {{- end }}
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    {{- if .Values.prometheus.enabled }}
+    prometheus: {{ .Values.service.name }}
+    {{- end }}
 spec:
   template:
     metadata:
