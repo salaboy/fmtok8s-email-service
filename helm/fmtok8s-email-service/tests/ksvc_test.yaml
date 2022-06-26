@@ -1,0 +1,22 @@
+suite: test knative service
+templates:
+  - ksvc.yaml
+tests:
+  - it: should render prometheus label if prometheus.enabled is true
+    set:
+      knative.enabled: true # necessary to render 
+      prometheus.enabled: true
+      service.name: "email"
+    asserts:
+      - equal:
+          path: spec.template.metadata.labels.prometheus
+          value: "email"
+  - it: should not render prometheus label if prometheus.enabled is false
+    set:
+      knative.enabled: true
+      prometheus.enabled: false
+      service.name: "email"
+    asserts:
+      - notEqual:
+        path: spec.template.metadata.label.prometheus
+        value: "email"

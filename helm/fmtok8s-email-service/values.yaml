@@ -21,7 +21,7 @@ knative:
 #    percent: 50
 
 prometheus:
-  enabled: true
+  enabled: false
   
 service:
   name: fmtok8s-email
