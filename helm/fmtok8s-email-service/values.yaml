@@ -20,6 +20,9 @@ knative:
 #  - latestRevision: true
 #    percent: 50
 
+prometheus:
+  enabled: true
+  
 service:
   name: fmtok8s-email
   type: ClusterIP
